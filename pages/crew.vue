@@ -1,22 +1,24 @@
 <template>
   <div class="container flow flex crew">
     <h1 class="numbered-title"><span>02</span> Meet your Crew</h1>
-    <div v-if="member" class="img-container flex">
-      <img class="member-picture" :src="member['webp-image'].guid" alt="" />
-    </div>
-    <div class="dot-indicators flex">
-      <button
-        v-for="(item, index) in crew"
-        :key="index"
-        @click="setMember(index)"
-      ></button>
-    </div>
-    <div class="container flex member-info" v-if="member">
-      <div class="uppercase ff-serif member-role">{{ member['role'] }}</div>
-      <div class="uppercase ff-serif fs-700 member-name">
-        {{ member['crew-name'] }}
+    <div class="content">
+      <div v-if="member" class="img-container flex">
+        <img class="member-picture" :src="member['webp-image'].guid" alt="" />
       </div>
-      <p class="text-accent">{{ member.bio }}</p>
+      <div class="dot-indicators flex">
+        <button
+          v-for="(item, index) in crew"
+          :key="index"
+          @click="setMember(index)"
+        ></button>
+      </div>
+      <div class="container flex member-info" v-if="member">
+        <div class="uppercase ff-serif member-role">{{ member['role'] }}</div>
+        <div class="uppercase ff-serif fs-700 member-name">
+          {{ member['crew-name'] }}
+        </div>
+        <p class="text-accent">{{ member.bio }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -81,5 +83,59 @@ img {
 
 .numbered-title {
   font-size: 16px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.text-accent {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+@media screen and (min-width: 480px) {
+  .content {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .img-container {
+    height: 400px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .member-picture {
+    height: 100%;
+  }
+
+  .member-role {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .member-name {
+    font-size: 40px;
+    line-height: 46px;
+  }
+
+  .text-accent {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .numbered-title {
+    margin-top: 2rem;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    letter-spacing: 3.375px;
+    align-self: flex-start;
+  }
 }
 </style>
