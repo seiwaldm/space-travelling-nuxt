@@ -12,6 +12,12 @@
           {{ item['destination-name'] }}
         </li>
       </ul>
+      <h1>{{ destination['destination-name'] }}</h1>
+      <p>{{ destination.description }}</p>
+      <div>
+        <span>{{ destination.distance }}</span>
+        <span>{{ destination.travel }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +29,11 @@ export default {
       destinations: [],
       activeDestinationIndex: 3,
     }
+  },
+  computed: {
+    destination() {
+      return this.destinations[this.activeDestinationIndex]
+    },
   },
   methods: {
     async loadData() {
@@ -39,11 +50,6 @@ export default {
     this.loadData()
     document.body.style.backgroundImage =
       "url('background-destination-mobile.jpg')"
-  },
-  computed: {
-    destination() {
-      return this.destinations[this.activeDestinationIndex]
-    },
   },
 }
 </script>
